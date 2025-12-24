@@ -73,7 +73,7 @@ void addGlobalMinuteOffset(){
 void addGlobalHourOffset(){
   rtc.adjust(DateTime(rtc.now().unixtime() + 60*60));
 }
-
+//***
 /**
  * @brief Display the current time on the box LCD screen
  * @param time a Time object
