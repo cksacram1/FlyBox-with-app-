@@ -105,7 +105,8 @@ EventList* decodeJSONFile(const char* filename) {
     } while (myFile.findUntil(",", "]"));
   } else {
     clearLCD();
-    digitalWrite(IR_PIN, LOW);
+    // digitalWrite(IR_PIN, LOW);
+    // maybe do this-> ledcWrite(PWM_IR, 0);
     writeLCD("Error: No file found", 0,0);
     writeLCD("Press knob to",3,2);
     writeLCD("restart",6, 3);
@@ -150,7 +151,7 @@ void checkToRunEvent(Event* event, Time* now, int daysElapsed){
  * @param Pins A PinStatus object that contains all the info on the pin
  * @param device The light that we want to turn off. 0 = Red, 1 = Green, 2 = White
  */
-void killEvent(PinStatus* Pins[3], int device){
+void killEvent(PinStatus* Pins[4], int device){
   int pin = Pins[device]->pinNumber;
   Serial.println("HERE");
   ledcWrite(pin, 0);
@@ -164,7 +165,7 @@ void killEvent(PinStatus* Pins[3], int device){
  * @param Pins A PinStatus object that contains all the info on the pins
  * @param event An Event* object that contains information on the current event to run
  */
-void runEvent(PinStatus *Pins[3], Event* event){
+void runEvent(PinStatus *Pins[4], Event* event){
   int device = event->device;
   int frequency = event->frequency;
   int intensity = event->intensity;

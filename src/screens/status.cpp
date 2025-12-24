@@ -6,7 +6,7 @@
  * @param event Most recent Event* struct containing info on most recent changes
  * @param Pins PinStatus struct that contains info on all of the pins
  */
-void updateStatusDisplay(Event* event, PinStatus* Pins[3]){
+void updateStatusDisplay(Event* event, PinStatus* Pins[4]){
   // get device number from event
   int device = event->device;
   int frequency = event->frequency;
@@ -38,10 +38,11 @@ void initStatus(char* filename){
   displayName[15] = '\0';
   char* shortDisplayName = displayName + 1;
 
-  writeLCD(shortDisplayName, 0, 0);
+  //writeLCD(shortDisplayName, 0, 0);
   writeLCD("White:", 0, 3);
   writeLCD("Red:", 0, 1);
   writeLCD("Green:", 0, 2);
+  writeLCD("IR:", 0, 0);
 }
 
 /**
@@ -56,14 +57,14 @@ void updateStatusPercentAndTime(int currentMinute, int startMinute, int endMinut
   if (percent < 0){
     percent = 0;
   }
-  writeLCD("%",19,1);
-
+  writeLCD("%",19,3);
+  writeLCD("Fin:", 12, 3);
   if (percent < 10){
-    writeLCDInt(percent, 18, 1);
+    writeLCDInt(percent, 18, 3);
   } else if (percent < 100){
-    writeLCDInt(percent, 17, 1);
+    writeLCDInt(percent, 17, 3);
   } else {
-    writeLCDInt(percent, 16, 1);
+    writeLCDInt(percent, 16, 3);
   }
 
   dispTime(currnetTime, 15, 0);

@@ -26,9 +26,10 @@ int firstEventStartMinute;
 Time* currentFlyTime = initTime();
 
 // make a dict sort of object so I can use json number to get pin
-PinStatus* Pins[3] = {initPinStatus(PWM_RED), 
-                      initPinStatus(PWM_GREEN), 
-                      initPinStatus(PWM_WHITE)};
+PinStatus* Pins[4] = {initPinStatus(PWM_RED), 
+                      initPinStatus(PWM_GREEN),
+                      initPinStatus(PWM_WHITE), 
+                      initPinStatus(PWM_IR)};
 
 // used to determine if a section of lights are running an event
 void setup() {
@@ -60,7 +61,7 @@ void setup() {
   FlyBoxEvents = decodeJSONFile(filename);
 
   // Turn on IR light for whole flybox test run
-  digitalWrite(IR_PIN, HIGH);
+  // digitalWrite(IR_PIN, HIGH);
 
   firstEventStartMinute = getFirstEventStart(FlyBoxEvents);
   finalEventEndMinute = getLastEventEnd(FlyBoxEvents);

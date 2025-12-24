@@ -46,7 +46,7 @@
 const int PWM_RED = 0;
 const int PWM_GREEN = 1;
 const int PWM_WHITE = 2;
-
+const int PWM_IR = 3;
 // Shared time constants
 const int PWM_FREQ = 5000;
 const int PWM_RESOLUTION = 10;

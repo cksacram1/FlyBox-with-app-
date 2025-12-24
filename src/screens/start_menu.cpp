@@ -6,20 +6,20 @@ extern Time* currentFlyTime;
 void printStartMenu(){
     
     int select = 0;
-    int IRState = -1;
+    // int IRState = -1;
     long originalPosition = getRotaryInfo();
     bool enterPressed = 0;
     bool initialPress = true;
     for (;;) {
         
         writeLCD("Select Test      >", 2, 0);
-        if (IRState == -1){
-            writeLCD("Toggle IR - off", 2, 1);
-            digitalWrite(IR_PIN, LOW);
-        } else {
-            writeLCD("Toggle IR - on ", 2, 1);
-            digitalWrite(IR_PIN, HIGH);
-        }
+        // if (IRState == -1){
+        //     writeLCD("Toggle IR - off", 2, 1);
+        //     digitalWrite(IR_PIN, LOW);
+        // } else {
+        //     writeLCD("Toggle IR - on ", 2, 1);
+        //     digitalWrite(IR_PIN, HIGH);
+        // }
         writeLCD("Adjust Box Time  >", 2, 2);
         long newPosition = getRotaryInfo();
         bool up = (newPosition < originalPosition);
@@ -47,7 +47,7 @@ void printStartMenu(){
         writeLCD(">", 0, select);
 
         if (select == 1 && enterPressed == 0 && knobIsPressed()){
-            IRState *= -1;
+            // IRState *= -1;
             enterPressed = 1;
         }
         if (!knobIsPressed() && enterPressed){
@@ -61,7 +61,7 @@ void printStartMenu(){
 
         if (select == 0 && knobIsPressed() && !initialPress) {
             clearLCD();
-            digitalWrite(IR_PIN, LOW);
+            // digitalWrite(IR_PIN, LOW);
             return;
         }
 
